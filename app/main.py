@@ -10,6 +10,17 @@ def main():
     server_socket.accept()  # wait for client
     server_socket.listen()
     print("Server listening on port 4221...")
+    print("Logs from your program will appear here!")
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind(("localhost", 4221))
+    server_socket.listen(1)
+
+    client_socket, addr = server_socket.accept()
+
+    # You can add minimal response or just close connection here
+    client_socket.close()
+
 
     while True:
         client_socket, client_address = server_socket.accept()
