@@ -6,7 +6,10 @@ def main():
 
     # Create a server socket bound to localhost:4221
     server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
+    server_socket.accept()[0].send(b"HTTP/1.1 200 OK\r\n\r\n")
+    server_socket.accept()  # wait for client
     server_socket.listen()
+    print("Server listening on port 4221...")
 
     while True:
         client_socket, client_address = server_socket.accept()
